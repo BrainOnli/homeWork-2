@@ -37,7 +37,7 @@ window.addEventListener('DOMContentLoaded', function() {
 
     // timer
 
-    let deadline = '2020-02-15';
+    let deadline = '2020-03-15';
 
     function getTimeRemaining(endtime) {
         let t = Date.parse(endtime) - Date.parse(new Date()),
@@ -57,7 +57,7 @@ window.addEventListener('DOMContentLoaded', function() {
         let timer = document.getElementById(id),
             hours = timer.querySelector('.hours'),
             minutes = timer.querySelector('.minutes'),
-            seconds = timer.querySelector('.seconds')
+            seconds = timer.querySelector('.seconds'),
             timeInterval = setInterval(updateClock, 1000);
 
         function updateClock() {
@@ -67,7 +67,7 @@ window.addEventListener('DOMContentLoaded', function() {
                 if(num <= 9) {
                     return '0' + num;
                 } else return num;
-            };
+            }
 
             hours.textContent = addZero(t.hours);
             minutes.textContent = addZero(t.minutes);
@@ -84,4 +84,22 @@ window.addEventListener('DOMContentLoaded', function() {
     }
 
     setClock('timer', deadline);
+
+    // modal window
+
+    let more = document.querySelector('.more'),
+        overlay = document.querySelector('.overlay'),
+        close = document.querySelector('.popup-close');
+
+        more.addEventListener('click', function () {
+            overlay.style.display = 'block';
+            this.classList.add('more-splash');
+            document.body.style.overflow = 'hidden';
+        });
+
+        close.addEventListener('click', function () {
+            overlay.style.display = 'none';
+            more.classList.remove('more-splash');
+            document.body.style.overflow = '';
+        });
 });
